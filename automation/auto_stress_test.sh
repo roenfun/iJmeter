@@ -26,7 +26,7 @@ killJMeter()
 }
 
 # 压测并发数列表
-thread_number_array=(2)
+thread_number_array=(2 10 30 40 50)
 for num in "${thread_number_array[@]}"
 do
     # 生成对应压测线程的jmx文件
@@ -41,13 +41,15 @@ do
     echo "生成jmx压测脚本 ${jmx_filename}"
 
     if [[ "${os_type}" == "Darwin" ]]; then
-        sed -i "" "s/thread_num/${num}/g" ${jmx_filename}
+        sed -i "" "s/thread_num/${num}/g" ${jmx_filename} #将jmx文件的thread数动态设置
     else
         sed -i "s/thread_num/${num}/g" ${jmx_filename}
     fi
 
     # JMeter 静默压测
-    nohup ${jmeter_path}/bin/jmeter -n -t ${jmx_filename} -l ${jtl_filename} -e -o ${web_report_path_name} &
+    echo "开始 JMeter 静默压测。。。"
+    #nohup ${jmeter_path}/bin/jmeter -n -t ${jmx_filename} -l ${jtl_filename} -e -o ${web_report_path_name} &
+    nohup jmeter -n -t ${jmx_filename} -l ${jtl_filename} -e -o ${web_report_path_name} &
     sleep 80
     killJMeter
     rm -f ${jmx_filename}
