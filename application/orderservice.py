@@ -4,6 +4,7 @@ import time
 
 from flask import Flask, request, make_response, jsonify, render_template
 from werkzeug.utils import secure_filename
+# from skywalking import agent, config
 
 app = Flask(__name__)
 user_token_dic = {
@@ -128,13 +129,25 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 basedir = os.path.abspath(os.path.dirname(__file__))
 ALLOWED_EXTENSIONS = set(['txt', 'png', 'jpg', 'xls', 'JPG', 'PNG', 'xlsx', 'gif', 'GIF', 'doc', 'docx', 'ppt', 'pptx'])
 
+enable_agent = True if os.getenv('enable_agent', 'false') == 'true' else False
+if enable_agent:
+    print('Start skywalking agent for monitoring.')
+    config.init(
+        agent_collector_backend_services="localhost:11800",
+        agent_name="python-order-service",
+        agent_instance_name="python-order-service-instance"
+    )
+    agent.start()
+
 
 @app.route("/api/v1/user/login", methods=['POST'])
 def login():
     """登录接口，输入参数格式：
-        "authRequest": {
-            "userName": "[username]",
-            "password": "[password]"
+        {
+            "authRequest": {
+                "userName": "[username]",
+                "password": "[password]"
+            }
         }
 
         :return
@@ -172,7 +185,8 @@ def login():
         }
 
         return make_response(jsonify(login_succ_resp_data), '200')
-    except Exception:
+    except Exception as ex:
+        print(ex.msg)
         return make_response(jsonify(server_internal_error_data), '500')
 
 
@@ -182,7 +196,7 @@ def list():
 
     :return: 菜单列表
     """
-    access_token = request.headers.get("access_token")
+    access_token = request.headers.get("accesstoken")
 
     if access_token is None:
         login_fail_resp_data = {
@@ -210,7 +224,7 @@ def list():
 @app.route("/api/v1/menu/confirm", methods=['POST'])
 def confirm():
     """下单接口，输入参数格式：
-        header = {'access_token' : ''}
+        header = {'accesstoken' : ''}
         data:
         {
             "order_list": [
@@ -248,7 +262,7 @@ def confirm():
         }
     """
     try:
-        access_token = request.headers.get("access_token")
+        access_token = request.headers.get("accesstoken")
         if access_token is None:
             login_fail_resp_data = {
                 "code": "401",
@@ -276,10 +290,10 @@ def confirm():
 @app.route("/api/v1/user/logout", methods=['DELETE'])
 def logout():
     """用户注销接口，输入参数格式：
-        header = {'access_token' : ''}
+        header = {'accesstoken' : ''}
     """
     try:
-        access_token = request.headers.get("access_token")
+        access_token = request.headers.get("accesstoken")
 
         if access_token not in user_token_dic.values():
             print('access_token error, logout failed.')
@@ -334,3 +348,7 @@ def api_upload():
 
 if __name__ == "__main__":
     app.run(port=9091, debug=True, host='0.0.0.0')
+
+    # Demo for https, password = 1234
+    # app.run('0.0.0.0', debug=True, port=9091, ssl_context=(f'{os.path.abspath(os.curdir)}/cert_files/server.crt'
+    #                                                        , f'{os.path.abspath(os.curdir)}/cert_files/server.key'))
