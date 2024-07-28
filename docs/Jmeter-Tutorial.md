@@ -12,9 +12,27 @@
 
 ## 二、根据视频的笔记
 
-### 1. 现成并发和顺序执行
-* 默认是并发执行，不是按顺序执行
+### 1. 线程并发和顺序执行
+*   默认是并发执行，不是按顺序执行
 ![screencapture](/screencaptures/jmeter/petstore/2.default-concurrent-execution.png "默认是并发执行")
 
-* 如果需要顺序执行，勾选下面截图的这个选项
+*   如果需要顺序执行，勾选下面截图的这个选项
   ![screencapture](/screencaptures/jmeter/petstore/3.sequence-execution.png "顺序执行执行")
+
+### 2. setUp和tearDown线程组
+*   入口: Test Plan右键 -> Add -> Threads -> setUp/tearDown Thread Group
+![screencapture](/screencaptures/jmeter/petstore/4.setup-teardown-thread.png "setUp 和 tearDown线程组")
+
+### 3. Thread group的properties, 线程组设置细节
+*    Number of Threads (users): 模拟用户的数量
+*    Ramp-up period(seconds): 程序准备时间
+*    Loop Count: 每个user执行的循环次数，如果勾选infinite(永远)，就不停执行下去
+*    Same user on each iteration：If selected, cookie and cache data from the first sampler response are used in subsequent requests (requires a global Cookie and Cache Manager respectively)
+*    Specify Thread lifetime：和Loop count勾选infinite时组合使用，一定时间内停止执行<br>
+     Duration (seconds):持续时间<br>
+     Startup delay (seconds):启动延迟<br>
+
+### 4. Http请求默认值
+*   入口: Test Plan右键 -> Add -> Config Elements -> HTTP Request Defaults
+*   接口公用的属性可以设置默认值，这样不用每个接口都要写
+*   ![screencapture](/screencaptures/jmeter/petstore/5.http-request-default.png "http线程默认值")
