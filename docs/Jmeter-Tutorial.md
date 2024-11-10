@@ -10,20 +10,20 @@
 ### 3. 作业存储位置
 *    作业存在本项目的这个路径下：jmx/Jmeter_Tutorial
 
-## 二、根据视频的笔记
+## 二、根据上面哔哩哔哩视频做的笔记
 
-### 1. 线程并发和顺序执行
+### 9. 线程并发和顺序执行
 *   默认是并发执行，不是按顺序执行
 ![screencapture](/screencaptures/jmeter/petstore/2.default-concurrent-execution.png "默认是并发执行")
 
 *   如果需要顺序执行，勾选下面截图的这个选项
   ![screencapture](/screencaptures/jmeter/petstore/3.sequence-execution.png "顺序执行执行")
 
-### 2. setUp和tearDown线程组
+### 10. 优先和最后执行的setUp和tearDown线程组
 *   入口: Test Plan右键 -> Add -> Threads -> setUp/tearDown Thread Group
 ![screencapture](/screencaptures/jmeter/petstore/4.setup-teardown-thread.png "setUp 和 tearDown线程组")
 
-### 3. Thread group的properties, 线程组设置细节
+### 11. Thread group的properties, 线程组设置细节
 *    Number of Threads (users): 模拟用户的数量
 *    Ramp-up period(seconds): 程序准备时间
 *    Loop Count: 每个user执行的循环次数，如果勾选infinite(永远)，就不停执行下去
@@ -32,7 +32,22 @@
      Duration (seconds):持续时间<br>
      Startup delay (seconds):启动延迟<br>
 
-### 4. Http请求默认值
+### 12. Http请求默认值
 *   入口: Test Plan右键 -> Add -> Config Elements -> HTTP Request Defaults
 *   接口公用的属性可以设置默认值，这样不用每个接口都要写
 *   ![screencapture](/screencaptures/jmeter/petstore/5.http-request-default.png "http线程默认值")
+
+### 13. 新增接口
+* 信息头管理器入口：Test Plan右键 -> Add -> Config Elements -> HTTP Header Manager
+* ![screencapture](/screencaptures/jmeter/petstore/6.http-header-manager.png "http信息头管理器")
+
+### 14. 参数化
+#### 四种参数化显示方式：
+###### 1). 用户定义变量
+###### 2). CSV数据文件设置
+###### 3). 用户参数
+###### 4). 函数
+
+### 15. 上面的 1).用户定义的变量
+*   入口: Test Plan右键 -> Add -> Config Elements -> User Defined Variables
+* ![screencapture](/screencaptures/jmeter/petstore/7.user-defined-vairable.png "用户自定义变量")

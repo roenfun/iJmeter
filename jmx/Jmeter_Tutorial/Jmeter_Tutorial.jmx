@@ -21,6 +21,26 @@
         <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
       </ConfigTestElement>
       <hashTree/>
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager">
+        <collectionProp name="HeaderManager.headers">
+          <elementProp name="" elementType="Header">
+            <stringProp name="Header.name">Content-Type</stringProp>
+            <stringProp name="Header.value">application/json;charset=utf-8</stringProp>
+          </elementProp>
+        </collectionProp>
+      </HeaderManager>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="petFindByStatus" elementType="Argument">
+            <stringProp name="Argument.name">petFindByStatus</stringProp>
+            <stringProp name="Argument.value">/api/v3/pet/findByStatus</stringProp>
+            <stringProp name="Argument.desc"></stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
       <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="setUp Thread Group">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
@@ -81,7 +101,8 @@
       <hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus1-1">
           <stringProp name="TestPlan.comments">https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available</stringProp>
-          <stringProp name="HTTPSampler.path">/api/v3/pet/findByStatus</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+          <stringProp name="HTTPSampler.path">${petFindByStatus}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -99,7 +120,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus1-2">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus1-2" enabled="false">
           <stringProp name="TestPlan.comments">https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available</stringProp>
           <stringProp name="HTTPSampler.path">/api/v3/pet/findByStatus</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -119,7 +140,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus1-3">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus1-3" enabled="false">
           <stringProp name="TestPlan.comments">https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available</stringProp>
           <stringProp name="HTTPSampler.path">/api/v3/pet/findByStatus</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -151,7 +172,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus2-1">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus2-1" enabled="true">
           <stringProp name="TestPlan.comments">https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">uft-8</stringProp>
           <stringProp name="HTTPSampler.path">/api/v3/pet/findByStatus</stringProp>
@@ -172,7 +193,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus2-2">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="pet/findByStatus2-2" enabled="true">
           <stringProp name="TestPlan.comments">https://petstore3.swagger.io/api/v3/pet/findByStatus?status=available</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">uft-8</stringProp>
           <stringProp name="HTTPSampler.path">/api/v3/pet/findByStatus</stringProp>
