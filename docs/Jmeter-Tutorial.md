@@ -51,3 +51,10 @@
 ### 15. 上面的 1).用户定义的变量
 *   入口: Test Plan右键 -> Add -> Config Elements -> User Defined Variables
 * ![screencapture](/screencaptures/jmeter/petstore/7.user-defined-vairable.png "用户自定义变量")
+
+### 16. 上面的 2).CSV数据文件设置
+* CSV：逗号分隔值
+* 入口: Test Plan右键 -> Add -> Config Elements -> CSV Data Set Config
+* 需要分三步，查看下面的图片
+* ![screencapture](/screencaptures/jmeter/petstore/8.csv-data-set.png "CSV数据文件设置")
+
