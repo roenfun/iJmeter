@@ -7,6 +7,7 @@
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
         <collectionProp name="Arguments.arguments"/>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
     </TestPlan>
     <hashTree>
       <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
@@ -30,7 +31,7 @@
         </collectionProp>
       </HeaderManager>
       <hashTree/>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables">
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
           <elementProp name="petFindByStatus" elementType="Argument">
             <stringProp name="Argument.name">petFindByStatus</stringProp>
@@ -166,7 +167,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group-AddANewPet">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group-AddANewPet" enabled="false">
         <stringProp name="TestPlan.comments">for add a new pet with POST method</stringProp>
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
@@ -178,7 +179,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="AddANewPet">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="AddANewPet-csvDataSet">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">D:/project/git/iJmeter/jmx/Jmeter_Tutorial/AddAPet.csv</stringProp>
@@ -191,8 +192,8 @@
           <stringProp name="TestPlan.comments">add a new pet with csv data set, used by AddANewPet api with POST, only for add new pet method</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet">
-          <stringProp name="TestPlan.comments">POST /pet Add a pet in the store with form data</stringProp>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet-csvDataSet">
+          <stringProp name="TestPlan.comments">POST /pet Add a pet in the store with form data, 使用csv 参数化</stringProp>
           <stringProp name="HTTPSampler.path">${AddANewPet}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -226,6 +227,92 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group-AddANewPet">
+        <stringProp name="TestPlan.comments">for add a new pet with POST method</stringProp>
+        <intProp name="ThreadGroup.num_threads">2</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
+          <stringProp name="LoopController.loops">1</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet-userParameters">
+          <stringProp name="TestPlan.comments">POST /pet Add a pet in the store with form data, 使用户 参数化</stringProp>
+          <stringProp name="HTTPSampler.path">${AddANewPet}</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;id&quot;: ${id},&#xd;
+  &quot;name&quot;: &quot;${name}&quot;,&#xd;
+  &quot;category&quot;: {&#xd;
+    &quot;id&quot;: ${categoryId},&#xd;
+    &quot;name&quot;: &quot;${categoryName}&quot;&#xd;
+  },&#xd;
+  &quot;photoUrls&quot;: [&#xd;
+    &quot;${photoUrls}&quot;&#xd;
+  ],&#xd;
+  &quot;tags&quot;: [&#xd;
+    {&#xd;
+      &quot;id&quot;: ${tagId},&#xd;
+      &quot;name&quot;: &quot;${tagName}&quot;&#xd;
+    }&#xd;
+  ],&#xd;
+  &quot;status&quot;: &quot;${status}&quot;&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="3355">id</stringProp>
+              <stringProp name="3373707">name</stringProp>
+              <stringProp name="1296531129">categoryId</stringProp>
+              <stringProp name="426048681">categoryName</stringProp>
+              <stringProp name="-847957450">photoUrls</stringProp>
+              <stringProp name="110119509">tagId</stringProp>
+              <stringProp name="-1549184699">tagName</stringProp>
+              <stringProp name="-892481550">status</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-236571403">
+                <stringProp name="1575">18</stringProp>
+                <stringProp name="2195810">Fox1</stringProp>
+                <stringProp name="56">8</stringProp>
+                <stringProp name="70831">Fox</stringProp>
+                <stringProp name="-2036429835">https://www.swagger.com/fox1.png</stringProp>
+                <stringProp name="53">5</stringProp>
+                <stringProp name="1965718044">Animal</stringProp>
+                <stringProp name="1270065833">Available</stringProp>
+              </collectionProp>
+              <collectionProp name="-1259903707">
+                <stringProp name="1576">19</stringProp>
+                <stringProp name="2195811">Fox2</stringProp>
+                <stringProp name="57">9</stringProp>
+                <stringProp name="70831">Fox</stringProp>
+                <stringProp name="-2035506314">https://www.swagger.com/fox2.png</stringProp>
+                <stringProp name="54">6</stringProp>
+                <stringProp name="1964795484">Aminal</stringProp>
+                <stringProp name="-959006008">Disable</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">false</boolProp>
+            <stringProp name="TestPlan.comments">User Parameters-用户参数</stringProp>
+          </UserParameters>
+          <hashTree/>
+        </hashTree>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="false">
         <intProp name="ThreadGroup.num_threads">1</intProp>

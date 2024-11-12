@@ -58,3 +58,8 @@
 * 需要分三步，查看下面的图片
 * ![screencapture](/screencaptures/jmeter/petstore/8.csv-data-set.png "CSV数据文件设置")
 
+### 17. 上面的 2).用户参数
+* 应用场景不多
+* 入口: 具体的线程(Http request)右键 -> Add -> Pre Processor(前置处理器) -> User Parameters(用户参数)
+* 需要分三步，查看下面的图片，有多少个用户线程数(Number of Threads)就设置多少，Loop Count不勾选
+* ![screencapture](/screencaptures/jmeter/petstore/9.user-parameters.png "用户参数")
