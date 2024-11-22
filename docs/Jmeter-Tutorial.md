@@ -53,13 +53,20 @@
 * ![screencapture](/screencaptures/jmeter/petstore/7.user-defined-vairable.png "用户自定义变量")
 
 ### 16. 上面的 2).CSV数据文件设置
+* 这是常用的参数方式
 * CSV：逗号分隔值
 * 入口: Test Plan右键 -> Add -> Config Elements -> CSV Data Set Config
 * 需要分三步，查看下面的图片
 * ![screencapture](/screencaptures/jmeter/petstore/8.csv-data-set.png "CSV数据文件设置")
 
-### 17. 上面的 2).用户参数
+### 17. 上面的 3).用户参数
 * 应用场景不多
 * 入口: 具体的线程(Http request)右键 -> Add -> Pre Processor(前置处理器) -> User Parameters(用户参数)
 * 需要分三步，查看下面的图片，有多少个用户线程数(Number of Threads)就设置多少，Loop Count不勾选
 * ![screencapture](/screencaptures/jmeter/petstore/9.user-parameters.png "用户参数")
+
+### 18. 上面的 4).函数之计数器函数
+* 入口: Tools -> Function Helper Dialog 或者 工具栏直接点图标
+* 对话框里选择counter，然后输入true或false，点击生成，复制变量字符串
+* 详细步骤请查看下面的图片
+* ![screencapture](/screencaptures/jmeter/petstore/10.function-helper-counter.png "用户参数")
