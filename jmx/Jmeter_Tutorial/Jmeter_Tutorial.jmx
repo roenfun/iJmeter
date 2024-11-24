@@ -70,7 +70,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group">
+      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="tearDown Thread Group" enabled="true">
         <intProp name="ThreadGroup.num_threads">1</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
@@ -81,7 +81,7 @@
         </elementProp>
       </PostThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="tearDown HTTP Request">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="tearDown HTTP Request" enabled="true">
           <stringProp name="TestPlan.comments">tear down method</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -179,7 +179,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="AddANewPet-csvDataSet">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="AddANewPet-csvDataSet" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
           <stringProp name="filename">D:/project/git/iJmeter/jmx/Jmeter_Tutorial/AddAPet.csv</stringProp>
@@ -192,7 +192,7 @@
           <stringProp name="TestPlan.comments">add a new pet with csv data set, used by AddANewPet api with POST, only for add new pet method</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet-csvDataSet">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet-csvDataSet" enabled="true">
           <stringProp name="TestPlan.comments">POST /pet Add a pet in the store with form data, 使用csv 参数化</stringProp>
           <stringProp name="HTTPSampler.path">${AddANewPet}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -240,7 +240,7 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet-userParameters:${__counter(true,)}">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AddANewPet-userParameters:${__counter(true,)}-${__Random(19,30,)}-${__time(,)}-${__time(yyyy-MM-dd hh:mm:ss,)}">
           <stringProp name="TestPlan.comments">POST /pet Add a pet in the store with form data, 使用户 参数化, 计数器函数${__counter(true,)}</stringProp>
           <stringProp name="HTTPSampler.path">${AddANewPet}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -275,7 +275,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters">
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="User Parameters" enabled="true">
             <collectionProp name="UserParameters.names">
               <stringProp name="3355">id</stringProp>
               <stringProp name="3373707">name</stringProp>

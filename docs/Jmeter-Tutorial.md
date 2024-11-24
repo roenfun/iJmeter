@@ -65,8 +65,12 @@
 * 需要分三步，查看下面的图片，有多少个用户线程数(Number of Threads)就设置多少，Loop Count不勾选
 * ![screencapture](/screencaptures/jmeter/petstore/9.user-parameters.png "用户参数")
 
-### 18. 上面的 4).函数之计数器函数
+### 18, 19, . 上面的 4).函数之计数器函数
 * 入口: Tools -> Function Helper Dialog 或者 工具栏直接点图标
-* 对话框里选择counter，然后输入true或false，点击生成，复制变量字符串
+* 计数器函数: 对话框里选择counter，然后输入true或false，点击生成，复制变量字符串
 * 详细步骤请查看下面的图片
-* ![screencapture](/screencaptures/jmeter/petstore/10.function-helper-counter.png "用户参数")
+* ![screencapture](/screencaptures/jmeter/petstore/10.function-helper-counter.png "用户参数-计数器")
+* 随机函数: 对话框里选random，然后输入随机数区间
+* ![screencapture](/screencaptures/jmeter/petstore/11.function-helper-random.png "用户参数-随机数")
+* 时间函数：对话框里选time，默认是时间戳，需要格式化的可以使用 yyyy-MM-dd hh:mm:ss 等格式
+* ![screencapture](/screencaptures/jmeter/petstore/12.function-helper-time.png "用户参数-时间函数")
