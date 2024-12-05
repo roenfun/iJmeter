@@ -46,7 +46,7 @@
 ###### 1). 用户定义变量
 ###### 2). CSV数据文件设置
 ###### 3). 用户参数
-###### 4). 函数
+###### 4). 函数(包括：计数器函数，随机数函数，时间函数)
 
 ### 15. 上面的 1).用户定义的变量
 *   入口: Test Plan右键 -> Add -> Config Elements -> User Defined Variables
@@ -65,7 +65,7 @@
 * 需要分三步，查看下面的图片，有多少个用户线程数(Number of Threads)就设置多少，Loop Count不勾选
 * ![screencapture](/screencaptures/jmeter/petstore/9.user-parameters.png "用户参数")
 
-### 18, 19, . 上面的 4).函数之计数器函数
+### 18, 19, 20. 上面的 4).函数之计数器函数，随机数函数，时间函数
 * 入口: Tools -> Function Helper Dialog 或者 工具栏直接点图标
 * 计数器函数: 对话框里选择counter，然后输入true或false，点击生成，复制变量字符串
 * 详细步骤请查看下面的图片
@@ -74,3 +74,18 @@
 * ![screencapture](/screencaptures/jmeter/petstore/11.function-helper-random.png "用户参数-随机数")
 * 时间函数：对话框里选time，默认是时间戳，需要格式化的可以使用 yyyy-MM-dd hh:mm:ss 等格式
 * ![screencapture](/screencaptures/jmeter/petstore/12.function-helper-time.png "用户参数-时间函数")
+
+### 22. 直连数据库
+* Jmeter不具备直连数据库功能，必须整合第三方（jar包）实现
+* 1.先导入jdbc的jar包
+* 2.测试计划右键添加jdbc connection configuration, 输入variabl 那么和database connection configuration
+* 3.线程组右键添加 jdbc request， 输入上一步的variable name 并输入SQL语句
+* 4.运行线程组的jdbc request
+* ![screencapture](/screencaptures/jmeter/petstore/13.jdbc-connection.png "数据库直连")
+
+### 23. 结果在百度搜索
+* 接上一步骤(22的)，
+* 1.线程组里添加调试取样器
+* 2.jdbc request里添加一个variable name来保存SQL语句返回的结果
+* 3.新建一个Http request来模拟请求百度里输入关键字
+* ![screencapture](/screencaptures/jmeter/petstore/14.jdbc-baidu-serach-with-variable.png "数据库直连")
